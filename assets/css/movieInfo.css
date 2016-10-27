@@ -1,269 +1,219 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,300,700);
-
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-*, *:before, *:after {
+@charset "UTF-8";
+* {
   box-sizing: border-box;
 }
 
-body {
-  background: #43423E;
+.moviecard {
+  position: relative;
+  background: #ffffff;
+  color: #555555;
+  width: 91%;
+  min-height: 300px;
+  padding: 30px 290px 30px 30px;
+  -moz-box-shadow: -5px 5px 15px;
+  -webkit-box-shadow: -5px 5px 15px;
+  box-shadow: -5px 5px 15px;
+  border-radius: 5px;
 }
-
-a {
+.moviecard #movie-content {
+  opacity: 1;
+  width: 100%;
+  display: table;
+  transition: all 500ms ease-out;
+  position: relative;
+}
+.moviecard .movie-title {
+  font-size: 36px;
+  padding-bottom: 6px;
+  color: #333333;
+}
+.moviecard .movie-title .movie-year {
+  margin-left: 12px;
+  font-size: 14px;
+}
+.moviecard .movie-title a {
+  color: #333333;
   text-decoration: none;
-  color: #5C7FB8
 }
-
-a:hover {
+.moviecard .movie-title a:hover {
+  color: #858585;
+}
+.moviecard .movie-details {
+  font-size: 12px;
+  padding-bottom: 24px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #dbdbdb;
+}
+.moviecard .movie-details span {
+  padding: 0px 6px;
+  border-right: 1px solid #dbdbdb;
+}
+.moviecard .movie-details span:last-child {
+  border: none;
+}
+.moviecard .movie-castcrew {
+  padding-top: 12px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.moviecard .movie-castcrew span.title {
+  color: #333333;
+  display: inline-block;
+  width: 80px;
+  font-weight: 600;
+}
+.moviecard .movie-synopsis {
+  margin: 24px 0px;
+  padding-top: 24px;
+  border-top: 1px solid #dbdbdb;
+  max-height: 130px;
+  height: 130px;
+  overflow-y: hidden;
+  width: 100%;
+}
+.moviecard .movie-ratings {
+  position: absolute;
+  right: 0px;
+   display: inline-block;
+}
+.moviecard .movie-ratings span.star {
+  display: inline-block;
+  margin-right: 12px;
+  color: #F0DE00;
+  font-size: 36px;
+}
+.moviecard .movie-ratings span.score {
+  font-size: 30px;
+  color: #333333;
+  display: inline-block;
+}
+.moviecard .movie-trailer-btn {
+  text-transform: uppercase;
+  outline: none;
+  padding: 15px 50px;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.moviecard .movie-trailer-btn:hover {
   text-decoration: underline;
 }
-
-.movie-card {
-  font: 14px/22px "Lato", Arial, sans-serif;
-  color: #A9A8A3;
-  padding: 40px 0;
+.moviecard .movie-trailer-btn:hover:before {
+  color: #333333;
 }
-
-.container {
-  margin: 0 auto;
-  width: 780px;
-  height: 640px;
-  background: #F0F0ED;
-  border-radius: 5px;
-  position: relative;
+.moviecard .movie-trailer-btn:hover:after {
+  border-color: #333333;
 }
-
-.hero {
-  height: 342px;  
-  margin:0;
-  position: relative;
-  overflow: hidden;
-  z-index:1;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-    
-}
-
-.hero:before {
-  content:'';
-  width:100%; height:100%;
-  position:absolute;
-  overflow: hidden;
-  top:0; left:0;
-  background:red;
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg");
-  z-index:-1;
- 
-  transform: skewY(-2.2deg);
-  transform-origin:0 0;
-  
-  //chrome antialias fix
-  -webkit-backface-visibility: hidden; 
-  
-}
-
-.cover {
+.moviecard .movie-trailer-btn:before {
+  content: '▸';
+  font-size: 30px;
+  color: #333333;
   position: absolute;
-  top: 160px;
-  left: 40px;
-  z-index: 2;
+  top: 2px;
+  left: 20px;
 }
-
-.details {
-  
-  padding: 190px 0 0 280px;
-  
-  
-  .title1 {
-    color: white;
-    font-size: 44px;
-    margin-bottom: 13px;
-    position: relative;
-    
-    span {
-      position: absolute;
-      top: 3px;
-      margin-left: 12px;
-      background: #C4AF3D;
-      border-radius: 5px;
-      color: #544C21;
-      font-size: 14px;
-      padding: 0px 4px;
-      
-    }
-  }
-
-  .title2 {    
-    color: #C7C1BA;
-    font-size: 23px;    
-    font-weight: 300;
-    margin-bottom: 15px;
-  }
-  
-  
-  .likes {
-    margin-left: 24px;
-  }
-  
-  
-  .likes:before {
-    content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
-    position: relative;
-    top: 2px;
-    padding-right: 7px;
-  }
-
+.moviecard .movie-trailer-btn:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 1px solid #333333;
+  border-radius: 50%;
+  position: absolute;
+  left: 18px;
+  top: 12px;
 }
-
-.description {
-  
-  bottom: 0px;
-  height: 200px;
-  font-size: 16px;
-  line-height: 26px;
-  color: #B1B0AC;
-  
+.moviecard .movie-trailer {
+  width: 0px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  transition: all 500ms;
+  top: 0px;
+  background: #ffffff;
+  z-index: 1;
+  padding: 60px 40px 60px 60px;
+  border-radius: 5px;
 }
-
-.column1 {
-  padding-left: 50px;
-  padding-top: 120px;
-  width: 220px;
-  float: left;
-  text-align: center;
-}
-
-.tag {
-  background: white;
-  border-radius: 10px;
-  padding: 3px 8px;
-  font-size: 14px;
-  margin-right: 4px;
-  line-height: 35px;
+.moviecard .movie-trailer a.back-btn {
+  color: #333333;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px 6px 18px;
+  position: absolute;
+  top: 12px;
+  left: 300px;
+  text-transform: uppercase;
+  font-size: 12px;
   cursor: pointer;
 }
-
-.tag:hover {
-  background: #ddd;
-}
-
-.column2 {
-  padding-left: 41px;
-  padding-top: 30px;
-  margin-left: 20px;
-  width: 480px;
-  float: left;
-}
-
-.avatars {
-  margin-top: 23px;
-  
-  img {
-    cursor: pointer;
-  }
-  
-  img:hover {
-    opacity: 0.6;
-  }
-  
-  a:hover {
-    text-decoration: none;
-  }
-}
-
-//star rating stuff via: http://codepen.io/jamesbarnett/pen/vlpkh/
-
-fieldset, label { margin: 0; padding: 0; }
-
-/****** Style Star Rating Widget *****/
-
-.rating { 
-  border: none;
-  float: left;
-}
-
-.rating > input { display: none; } 
-.rating > label:before { 
-  margin: 5px;
-  margin-top: 0;
-  font-size: 1em;
-  font-family: FontAwesome;
-  display: inline-block;
-  content: "\f005";
-}
-
-.rating > .half:before { 
-  content: "\f089";
+.moviecard .movie-trailer a.back-btn:before {
+  content: '⌜';
   position: absolute;
+  left: 5px;
+  top: 1px;
+  transform: rotate(-45deg);
+  font-size: 20px;
 }
-
-.rating > label { 
-  color: #ddd; 
- float: right; 
+.moviecard .movie-trailer a.back-btn:hover {
+  color: #333;
 }
-
-/***** CSS Magic to Highlight Stars on Hover *****/
-
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
-
-//tooltip stuff via: http://codepen.io/peiche/pen/JaftA
-
-a[data-tooltip] {
-  position: relative;
+.moviecard .movie-trailer iframe {
+  width: 100%;
+  height: 100%;
 }
-a[data-tooltip]::before,
-a[data-tooltip]::after {
+.moviecard .movie-poster {
   position: absolute;
-  display: none;
-  opacity: 0.85;
-}
-a[data-tooltip]::before {
-  /*
-   * using data-tooltip instead of title so we 
-   * don't have the real tooltip overlapping
-   */
-  content: attr(data-tooltip);
-  background: #000;
-  color: #fff;
-  font-size: 13px;
-  padding: 5px;
-  border-radius: 5px;
-  /* we don't want the text to wrap */
-  white-space: nowrap;
-  text-decoration: none;
-}
-a[data-tooltip]::after {
-  width: 0;
+  background-color: #dbdbdb;
+  background-size: 360px 540px;
+  background-repeat: no-repeat;
   height: 0;
-  border: 6px solid transparent;
-  content: '';
+  width: 360px;
+  height: 540px;
+  right: -100px;
+  top: -20px;
+  -moz-box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 500ms ease-out;
+  z-index: 10;
+}
+.moviecard .movie-poster:before {
+  content: '▸';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.moviecard .movie-poster:hover:before {
+  color: rgba(255, 255, 255, 0.8);
+}
+.moviecard.movie-view-trailer .movie-poster {
+  right: 600px;
+}
+.moviecard.movie-view-trailer #movie-content {
+  opacity: 0;
+  width: 0px;
+}
+.moviecard.movie-view-trailer .movie-trailer {
+  width: 100%;
+  opacity: 1;
+  padding-left: 300px;
+}
+.moviecard.movie-view-trailer .movie-trailer #youvideo {
+  height: 100%;
 }
 
-a[data-tooltip]:hover::before,
-a[data-tooltip]:hover::after {
-  display: block;
-}
-
-/** positioning **/
-
-/* top tooltip */
-a[data-tooltip][data-placement="top"]::before {
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 40px;
-}
-a[data-tooltip][data-placement="top"]::after {
-  border-top-color: #000;
-  border-bottom: none;
-  bottom: 50px;
-  left: 20px;
-  margin-bottom: 4px;
+.moviecard-img {
+  width: 360px;
+  height: 540px;
 }
