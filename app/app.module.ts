@@ -4,21 +4,19 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { MovieInfoComponent } from './movies/components/movie-info.component';
-import { MovieListComponent } from './movies/components/movie-list.component';
-import { routing } from './app.routes';
+import { AppRoutingModule }   from './app-routing.module';
+import { MoviesModule } from './movies/movies.module';
 
 @NgModule({
   imports:      [ 
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    AppRoutingModule,
+    MoviesModule
   ],
   declarations: [ 
-    AppComponent, 
-    MovieInfoComponent,
-    MovieListComponent
+    AppComponent
   ],
   bootstrap:    [ AppComponent ]
 })

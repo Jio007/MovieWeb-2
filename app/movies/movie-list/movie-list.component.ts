@@ -1,16 +1,15 @@
 import { Component, OnInit} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable }       from 'rxjs/Observable';
 
-import { MovieService } from '../services/movie-service';
-import { Movie } from "../../shared/models/movie";
+import { Movie }        from "../shared/movie.model";
+import { MovieService } from '../shared/movie.service';
 
 @Component({
   selector: 'movie-list',
-  providers: [MovieService],
-  templateUrl: 'app/movies/views/movie-list.component.html',
-  styleUrls: ['app/movies/assets/movie-list.component.css']
+  templateUrl: 'app/movies/movie-list/movie-list.component.html',
+  styleUrls: ['app/movies/movie-list/movie-list.component.css']
 })
-export class MovieListComponent  implements OnInit{
+export class MovieListComponent implements OnInit{
   movies: Movie[];
 
   // Constructor with injected service
@@ -21,8 +20,8 @@ export class MovieListComponent  implements OnInit{
     this.getMovies();
   }
 
+  // Get all movies
   getMovies() {
-    // Get all comments
     this.movieService.getMovies()
                       .subscribe(
                         movies => this.movies = movies, //Bind to view

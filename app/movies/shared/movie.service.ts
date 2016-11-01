@@ -3,14 +3,16 @@ import { Http, Response } from '@angular/http';
 
 import {UtilityComponent} from '../../shared/components/utility.component';
 
-import { Movie } from '../../shared/models/movie';
+import { Movie } from './movie.model';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MovieService {
 
+  // Constructor with injected http
   constructor (private http: Http) {}
 
+  // Get all movies
   getMovies (): Observable<Movie[]> {
     let moviesUrl = UtilityComponent.getUrl('discover/movie');
     return this.http.get(moviesUrl)
@@ -18,6 +20,7 @@ export class MovieService {
                   .catch(this.handleError);
   }
   
+  // Get movie details by id
   getMovieById (id: number): Observable<Movie> {
     let moviesUrl = UtilityComponent.getUrl('movie/'+id);
     return this.http.get(moviesUrl)
@@ -25,6 +28,7 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
+  // Get movie videos by id
   getMovieVideos (id: number): Observable<Array<any>> {
     let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/videos');
     return this.http.get(moviesUrl)
@@ -32,14 +36,14 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
+  // Extract response data
   private extractData(res: Response) {
     let body = res.json();
     return body.results || { };
   }
 
+  // Handle errors
   private handleError (error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
