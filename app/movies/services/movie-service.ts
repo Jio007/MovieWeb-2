@@ -25,6 +25,13 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
+  getMovieVideos (id: number): Observable<Array<any>> {
+    let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/videos');
+    return this.http.get(moviesUrl)
+                  .map(this.extractData)
+                  .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     let body = res.json();
     return body.results || { };

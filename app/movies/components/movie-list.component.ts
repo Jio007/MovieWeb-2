@@ -7,7 +7,8 @@ import { Movie } from "../../shared/models/movie";
 @Component({
   selector: 'movie-list',
   providers: [MovieService],
-  templateUrl: 'app/movies/views/movie-list.component.html'
+  templateUrl: 'app/movies/views/movie-list.component.html',
+  styleUrls: ['app/movies/assets/movie-list.component.css']
 })
 export class MovieListComponent  implements OnInit{
   movies: Movie[];
