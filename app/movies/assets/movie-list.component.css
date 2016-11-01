@@ -7,7 +7,7 @@
 }
 
 .front, .back {
-	background: #4E5D6C;
+	background: #272B30;
 	transition: -webkit-transform 1s;
 	-webkit-transform-style: preserve-3d;
 	-webkit-backface-visibility: hidden;

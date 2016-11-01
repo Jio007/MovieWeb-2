@@ -8,11 +8,13 @@ import { Movie } from "../../shared/models/movie";
 @Component({
   selector: 'movie-info',
   providers: [MovieService],
-  templateUrl: 'app/movies/views/movie-info.component.html'
+  templateUrl: 'app/movies/views/movie-info.component.html',
+  styleUrls: ['app/movies/assets/movie-info.component.css']
 })
 export class MovieInfoComponent implements OnInit {
   private sub:any;
   movieInfo: Movie = new Movie();
+  videos: any[];
 
   // Constructor with injected service
   constructor(
@@ -27,6 +29,7 @@ export class MovieInfoComponent implements OnInit {
       let id = params['id'];
       // Retrieve Movie with Id route param
       this.getMovieById(id);
+      this.getMovieVideos(id);
     });
   }
 
@@ -35,6 +38,17 @@ export class MovieInfoComponent implements OnInit {
     this.movieService.getMovieById(id)
                       .subscribe(
                         movieInfo => this.movieInfo = movieInfo, //Bind to view
+                        err => {
+                          // Log errors if any
+                          console.log(err);
+                        });
+  }
+
+  getMovieVideos(id: number){
+    // Get all comments
+    this.movieService.getMovieVideos(id)
+                      .subscribe(
+                        videos => this.videos = videos, //Bind to view
                         err => {
                           // Log errors if any
                           console.log(err);
