@@ -1,22 +1,21 @@
+import { ActivatedRoute }    from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute }   from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable }        from 'rxjs/Observable';
 
-import { MovieService } from '../services/movie-service';
-import { Movie } from "../../shared/models/movie";
+import { Movie }        from "../shared/movie.model";
+import { MovieService } from '../shared/movie.service';
 
 @Component({
-  selector: 'movie-info',
-  providers: [MovieService],
-  templateUrl: 'app/movies/views/movie-info.component.html',
-  styleUrls: ['app/movies/assets/movie-info.component.css']
+  selector: 'movie-details',
+  templateUrl: 'app/movies/movie-details/movie-details.component.html',
+  styleUrls: ['app/movies/movie-details/movie-details.component.css']
 })
-export class MovieInfoComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit {
   private sub:any;
   movieInfo: Movie = new Movie();
   videos: any[];
 
-  // Constructor with injected service
+  // Constructor with injected service and route
   constructor(
     private movieService: MovieService, 
     private route: ActivatedRoute
@@ -29,12 +28,13 @@ export class MovieInfoComponent implements OnInit {
       let id = params['id'];
       // Retrieve Movie with Id route param
       this.getMovieById(id);
+      // Retrieve Movie videos with Id route param
       this.getMovieVideos(id);
     });
   }
 
+  // Get movie details
   getMovieById(id: number){
-    // Get all comments
     this.movieService.getMovieById(id)
                       .subscribe(
                         movieInfo => this.movieInfo = movieInfo, //Bind to view
@@ -44,8 +44,8 @@ export class MovieInfoComponent implements OnInit {
                         });
   }
 
+  // Get movie videos
   getMovieVideos(id: number){
-    // Get all comments
     this.movieService.getMovieVideos(id)
                       .subscribe(
                         videos => this.videos = videos, //Bind to view
@@ -56,7 +56,7 @@ export class MovieInfoComponent implements OnInit {
   }
 
   ngOnDestroy() {
-      // Clean sub to avoid memory leak
+    // Clean sub to avoid memory leak
     this.sub.unsubscribe();
   }
 }
