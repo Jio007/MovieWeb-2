@@ -36,6 +36,21 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
+  // Get movies by name
+  getMoviesByName (name: string): Observable<Movie[]> {
+    let moviesUrl: string;
+    
+    if(name) {
+       moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name);
+    }else{
+       moviesUrl = UtilityComponent.getUrl('discover/movie');
+    }
+    
+    return this.http.get(moviesUrl)
+                  .map(this.extractData)
+                  .catch(this.handleError);
+  }
+
   // Extract response data
   private extractData(res: Response) {
     let body = res.json();

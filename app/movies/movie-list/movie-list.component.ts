@@ -17,7 +17,7 @@ export class MovieListComponent implements OnInit{
 
   ngOnInit() {
     // Load comments
-    this.getMovies();
+    //this.getMovies();
   }
 
   // Get all movies
