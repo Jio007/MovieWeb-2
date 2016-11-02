@@ -5,7 +5,10 @@ export class UtilityComponent {
   private static VIDEOS: string        = "&append_to_response=videos";
 
   // Return the tmdb API url
-  static getUrl(path: string){
+  static getUrl(path: string, parameter: string = null){
+    if(parameter) {
+      return this.MOVIE_API_URL+path+this.API_KEY+parameter;
+    }
     return this.MOVIE_API_URL+path+this.API_KEY;
   }
 
