@@ -2,24 +2,25 @@
   <main class="card">
     <div class="billboard-layer"></div>
     <div class="hero">
-      <img src="http://image.tmdb.org/t/p/w780/{{movieInfo.backdrop_path}}">
+      <img src="http://image.tmdb.org/t/p/w780/{{movieInfo.backdrop_path}}" *ngIf="movieInfo.backdrop_path">
+      <img src="http://www.mccormickapts.com/Common/images/jquery/galleria/image-not-found.png" *ngIf="!movieInfo.backdrop_path">
     </div>
     <div class="breaking-bad">
       <h1 class="title">{{movieInfo.title}}</h1>
       <ul class="meta">
         <li class="year">{{movieInfo.release_date | date: 'yyyy'}}</li>
-        <li class="rating">{{movieInfo.vote_average}} 
+        <li class="rating" *ngIf="movieInfo.vote_average">{{movieInfo.vote_average}} 
           <span class="fa fa-star" aria-hidden="true"></span> 
         </li>
-        <li class="duration">{{movieInfo.runtime}} min</li>
-        <li class="language"  *ngFor="let language of movieInfo.spoken_languages">
+        <li class="duration" *ngIf="movieInfo.runtime">{{movieInfo.runtime}} min</li>
+        <li class="language" *ngFor="let language of movieInfo.spoken_languages">
           {{language.name}}
         </li>
       </ul>
       <p class="description">{{movieInfo.overview}}
       </p>
       <hr class="break" />
-       <div class="bottom-info" *ngFor="let video of videos; let i = index">
+      <div class="bottom-info" *ngFor="let video of videos; let i = index">
         <div *ngIf="i == 0">
           <a class="btn btn-min-w btn-web btn-s" href="/" role="button"> Back </a>
           <a class="btn btn-min-w btn-grey" href="https://www.youtube.com/watch?v={{video.key}}" role="button" target="_blank"> Play Trailer</a>
@@ -28,3 +29,26 @@
     </div>
   </main>
 </section>
+
+<div class="container">
+  <div class="row row-centered">
+    <h2>Top Billed Cast</h2>
+    <!-- Info Card with social icons -->
+    <div class="info-card" *ngFor="let cast of credits; let i = index">
+      <div class="front" *ngIf="i <= 5">
+        <img src="http://image.tmdb.org/t/p/h632/{{cast.profile_path}}" class="card-image" *ngIf="cast.profile_path"/>
+        <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" class="card-image" *ngIf="!cast.profile_path"/>
+      </div>
+      <div class="back" *ngIf="i <= 5">
+        <h3>{{cast.character}}</h3>
+        <p>
+          As {{cast.name}}
+        </p>
+        <div class="social">
+          <a [routerLink]="['/actors', cast.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
