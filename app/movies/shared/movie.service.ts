@@ -20,7 +20,7 @@ export class MovieService {
                   .catch(this.handleError);
   }
   
-  // Get movie details by id
+  // Get movie's details by id
   getMovieById (id: number): Observable<Movie> {
     let moviesUrl = UtilityComponent.getUrl('movie/'+id);
     return this.http.get(moviesUrl)
@@ -28,7 +28,7 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
-  // Get movie videos by id
+  // Get the movie's videos by id
   getMovieVideos (id: number): Observable<Array<any>> {
     let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/videos');
     return this.http.get(moviesUrl)
@@ -36,10 +36,10 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
-  // Get movies by name
+  // Get movie list by name
   getMoviesByName (name: string): Observable<Movie[]> {
     let moviesUrl: string;
-    
+
     if(name) {
        moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name);
     }else{
@@ -51,10 +51,24 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
+  // Get the movie's credit list
+  getMovieCredits(id: number){
+    let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/credits');
+    return this.http.get(moviesUrl)
+                  .map(this.extractCast)
+                  .catch(this.handleError);
+  }
+
   // Extract response data
   private extractData(res: Response) {
     let body = res.json();
     return body.results || { };
+  }
+
+  // Extract response data
+  private extractCast(res: Response) {
+    let body = res.json();
+    return body.cast || { };
   }
 
   // Handle errors

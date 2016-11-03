@@ -14,6 +14,7 @@ export class MovieDetailsComponent implements OnInit {
   private sub:any;
   movieInfo: Movie = new Movie();
   videos: any[];
+  credits: any[];
 
   // Constructor with injected service and route
   constructor(
@@ -26,10 +27,12 @@ export class MovieDetailsComponent implements OnInit {
     // Subscribe to route params
     this.sub = this.route.params.subscribe(params => {
       let id = params['id'];
-      // Retrieve Movie with Id route param
+      // Retrieve Movie's information with Id route param
       this.getMovieById(id);
-      // Retrieve Movie videos with Id route param
+      // Retrieve Movie's videos
       this.getMovieVideos(id);
+       // Retrieve Movie's credits
+      this.getMovieCredits(id);
     });
   }
 
@@ -49,6 +52,17 @@ export class MovieDetailsComponent implements OnInit {
     this.movieService.getMovieVideos(id)
                       .subscribe(
                         videos => this.videos = videos, //Bind to view
+                        err => {
+                          // Log errors if any
+                          console.log(err);
+                        });
+  }
+
+   // Get movie details
+  getMovieCredits(id: number){
+    this.movieService.getMovieCredits(id)
+                      .subscribe(
+                        credits => this.credits = credits, //Bind to view
                         err => {
                           // Log errors if any
                           console.log(err);
