@@ -9,6 +9,10 @@
     "tsc:w": "tsc -w",
     "typings": "typings"
   },
+  "engines": {
+    "node": "6.7.0",
+    "npm": "3.10.3"
+  }
   "licenses": [
     {
       "type": "MIT",
