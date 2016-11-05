@@ -22,7 +22,7 @@
       <hr class="break" />
       <div class="bottom-info" *ngFor="let video of videos; let i = index">
         <div *ngIf="i == 0">
-          <a class="btn btn-min-w btn-web btn-s" href="/" role="button"> Back </a>
+          <a class="btn btn-min-w btn-web btn-s" [routerLink]="['/movies']" role="button"> Back to Movie List </a>
           <a class="btn btn-min-w btn-grey" href="https://www.youtube.com/watch?v={{video.key}}" role="button" target="_blank"> Play Trailer</a>
         </div>
       </div>
@@ -40,9 +40,9 @@
         <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" class="card-image" *ngIf="!cast.profile_path"/>
       </div>
       <div class="back" *ngIf="i <= 5">
-        <h3>{{cast.character}}</h3>
+        <h3> {{cast.name}} </h3>
         <p>
-          As {{cast.name}}
+          As {{cast.character}}
         </p>
         <div class="social">
           <a [routerLink]="['/actors', cast.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>

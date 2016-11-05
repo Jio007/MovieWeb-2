@@ -1,0 +1,23 @@
+ <div class="search-box">
+    <input placeholder="Search Actors" class="search" [(ngModel)]="name" (keypress)="searchActor(event)" />
+  </div>
+
+ <!-- Actor List -->
+<div class="container">
+  <div class="row row-centered">
+    <h2>Popular Actors</h2>
+    <!-- Info Card with social icons -->
+    <div class="info-card" *ngFor="let cast of actors; let i = index">
+      <div class="front">
+        <img src="http://image.tmdb.org/t/p/h632/{{cast.profile_path}}" class="card-image" *ngIf="cast.profile_path"/>
+        <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" class="card-image" *ngIf="!cast.profile_path"/>
+      </div>
+      <div class="back">
+        <h3> {{cast.name}} </h3>
+        <div class="social">
+          <a [routerLink]="['/actors', cast.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

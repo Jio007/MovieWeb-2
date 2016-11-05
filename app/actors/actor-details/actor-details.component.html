@@ -1,0 +1,43 @@
+ <div class="container"> 
+
+  <div class="media">
+    
+    <div class="media-left">
+
+        <img src="http://image.tmdb.org/t/p/w185/{{actorInfo?.profile_path}}" style="margin-left:12px" />
+              
+    </div>
+
+    <div class="media-body">
+     <h4 class="media-heading">{{actorInfo.name}} </h4>
+      <div class="medica-content">
+        <p>{{actorInfo.birthday}}</p>
+        <p>{{actorInfo.place_of_birth}}</p>
+        <p>{{actorInfo.biography}}</p>
+      </div>
+    </div>
+
+  </div>
+
+ <!-- Movie List -->
+<div class="container">
+  <div class="row row-centered">
+    <h2>Acting</h2>
+    <!-- Info Card with social icons -->
+    <div class="info-card" *ngFor="let movie of movies">
+      <div class="front">
+        <img src="http://image.tmdb.org/t/p/w300/{{movie.poster_path}}" class="card-image" *ngIf="movie.poster_path"/>
+        <img src="http://hdimagesnew.com/wp-content/uploads/2016/09/image-not-found.png"  class="card-image" *ngIf="!movie.poster_path">
+      </div>
+      <div class="back">
+        <h2>{{movie.original_title}}</h2>
+        <p>
+          {{movie.overview}}
+        </p>
+        <div class="social">
+          <a [routerLink]="['/movies', movie.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

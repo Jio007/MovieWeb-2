@@ -5,7 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule }   from './app-routing.module';
+
 import { MoviesModule } from './movies/movies.module';
+import { ActorsModule } from './actors/actors.module';
 
 @NgModule({
   imports:      [ 
@@ -13,7 +15,8 @@ import { MoviesModule } from './movies/movies.module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MoviesModule
+    MoviesModule,
+    ActorsModule
   ],
   declarations: [ 
     AppComponent

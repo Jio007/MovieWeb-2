@@ -1,3 +1,36 @@
-<main>
-  <router-outlet></router-outlet>
-</main>
+<body cz-shortcut-listen="true">
+
+  <header>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" [routerLink]="['/movies']">MovieWeb 2.0</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a [routerLink]="['/movies']"> Movies <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a [routerLink]="['/actors']">Actors</a>
+            </li>
+          </ul>
+        </div>
+      
+      </div>
+    </div>  
+  </header>
+
+  <div class="container">
+    <main>
+      <router-outlet></router-outlet>
+    </main> 
+  </div>
+
+  <footer class="text-center">
+    Copyright &copy; 2016
+  </footer>
+
+</body>
