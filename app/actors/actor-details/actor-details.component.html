@@ -1,13 +1,10 @@
+ <!-- Section: Actor's info -->
  <div class="container"> 
-
   <div class="media">
-    
     <div class="media-left">
-
-        <img src="http://image.tmdb.org/t/p/w185/{{actorInfo?.profile_path}}" style="margin-left:12px" />
-              
+      <img src="http://image.tmdb.org/t/p/w185/{{actorInfo.profile_path}}" style="margin-left:12px" *ngIf="actorInfo.profile_path"/>
+      <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" style="margin-left:12px" *ngIf="!actorInfo.profile_path" style="width: 185px; height: 278px;" />
     </div>
-
     <div class="media-body">
      <h4 class="media-heading">{{actorInfo.name}} </h4>
       <div class="medica-content">
@@ -16,28 +13,38 @@
         <p>{{actorInfo.biography}}</p>
       </div>
     </div>
-
-  </div>
-
- <!-- Movie List -->
-<div class="container">
-  <div class="row row-centered">
-    <h2>Acting</h2>
-    <!-- Info Card with social icons -->
-    <div class="info-card" *ngFor="let movie of movies">
-      <div class="front">
-        <img src="http://image.tmdb.org/t/p/w300/{{movie.poster_path}}" class="card-image" *ngIf="movie.poster_path"/>
-        <img src="http://hdimagesnew.com/wp-content/uploads/2016/09/image-not-found.png"  class="card-image" *ngIf="!movie.poster_path">
-      </div>
-      <div class="back">
-        <h2>{{movie.original_title}}</h2>
-        <p>
-          {{movie.overview}}
-        </p>
-        <div class="social">
-          <a [routerLink]="['/movies', movie.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+<!-- /Section: Actor's info -->
+
+<!-- Section: Movies -->
+<section id="about" class="home-section text-center bg-gray">
+  <h2>Movies</h2>
+  <div class="container">
+    <div class="row" >
+      <div class="col-sm-3 col-sm-3 col-md-3" *ngFor="let movie of movies">
+        <div class="offset"></div>
+        <div class="team boxed-grey">
+          <div class="inner">
+
+            <div class="subscribe">
+              <div>
+                <img src="http://image.tmdb.org/t/p/w300/{{movie.poster_path}}" class="img-responsive" *ngIf="movie.poster_path" style="width: 223px; height: 334px; align-content: center;"/>
+                <img src="http://www.mccormickapts.com/Common/images/jquery/galleria/image-not-found.png" class="img-responsive" *ngIf="!movie.poster_path" style="width: 223px; height: 334px; align-content: center;" />
+              </div>
+              
+              <span class="img-responsive">
+                <div>   
+                   <h5>{{movie.title}}</h5>
+                   <a [routerLink]="['/movies', movie.id]" class="btn btn-skin scroll">Details</a>
+                </div>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+</section>
+  <!-- /Section: Movies -->

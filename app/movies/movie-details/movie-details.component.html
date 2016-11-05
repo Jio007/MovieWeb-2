@@ -30,25 +30,38 @@
   </main>
 </section>
 
-<div class="container">
-  <div class="row row-centered">
-    <h2>Top Billed Cast</h2>
-    <!-- Info Card with social icons -->
-    <div class="info-card" *ngFor="let cast of credits; let i = index">
-      <div class="front" *ngIf="i <= 5">
-        <img src="http://image.tmdb.org/t/p/h632/{{cast.profile_path}}" class="card-image" *ngIf="cast.profile_path"/>
-        <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" class="card-image" *ngIf="!cast.profile_path"/>
-      </div>
-      <div class="back" *ngIf="i <= 5">
-        <h3> {{cast.name}} </h3>
-        <p>
-          As {{cast.character}}
-        </p>
-        <div class="social">
-          <a [routerLink]="['/actors', cast.id]" class="social-icon view animate"><span class="fa fa-eye" aria-hidden="true"></span></a>
+<!-- Section: Actors -->
+<section id="about" class="home-section text-center bg-gray">
+  <h2>Top Billed Cast</h2>
+  <div class="container">
+    <div class="row" >
+      <div class="col-sm-3 col-sm-3 col-md-3" *ngFor="let cast of credits; let i = index">
+        <div class="offset"></div>
+        <div class="team boxed-grey">
+          <div class="inner">
+
+            <div class="subscribe">
+              <div>
+                <img src="http://image.tmdb.org/t/p/h632/{{cast.profile_path}}" class="img-responsive" *ngIf="cast.profile_path" style="width: 223px; height: 334px; align-content: center;"/>
+                <img src="http://pakistanmediawatch.com/wp-content/uploads/2011/03/Unknown-Silhouette.jpg" class="img-responsive" *ngIf="!cast.profile_path" style="width: 223px; height: 334px; align-content: center;" />
+              </div>
+              
+              <span class="img-responsive">
+                <div>   
+                  <h5>{{cast.name}}</h5>
+                  <p>
+                    As {{cast.character}}
+                  </p>
+                   <a [routerLink]="['/actors', cast.id]" class="btn btn-skin scroll">Details</a>
+                </div>
+              </span>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
-</div>
+</section>
+  <!-- /Section: Actors -->
 
