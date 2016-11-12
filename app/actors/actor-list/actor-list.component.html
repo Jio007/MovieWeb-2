@@ -1,19 +1,6 @@
 <!-- Section: Actors -->
 <section id="about" class="home-section text-center bg-gray">
-  <div class="heading-about marginbot-50">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <div class="section-heading">
-            <h2>Popular Actors</h2>
-            <div class="search-box">
-              <input placeholder="Search Actors" class="search" [(ngModel)]="name" (keypress)="searchActor(event)" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <actor-search (listActors)="searchActors($event)"></actor-search>
 
   <div class="container">
     <div class="row" >

@@ -1,1 +1,31 @@
-<movie-search></movie-search>
+<section id="about" class="home-section text-center bg-gray">
+  <movie-search (listMovies)="searchMovies($event)"></movie-search>
+
+  <div class="container">
+    <div class="row" >
+      <div class="col-sm-3 col-sm-3 col-md-3" *ngFor="let movie of movies">
+        <div class="offset"></div>
+        <div class="team boxed-grey">
+          <div class="inner">
+
+            <div class="subscribe">
+              <div>
+                <img src="http://image.tmdb.org/t/p/w300/{{movie.poster_path}}" class="img-responsive" *ngIf="movie.poster_path" style="width: 223px; height: 334px; align-content: center;"/>
+                <img src="http://www.mccormickapts.com/Common/images/jquery/galleria/image-not-found.png" class="img-responsive" *ngIf="!movie.poster_path" style="width: 223px; height: 334px; align-content: center;" />
+              </div>
+              
+              <span class="img-responsive">
+                <div>   
+                   <h5>{{movie.title}}</h5>
+                   <p>{{movie.vote_average}}</p>
+                   <a [routerLink]="['/movies', movie.id]" class="btn btn-skin scroll">Details</a>
+                </div>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

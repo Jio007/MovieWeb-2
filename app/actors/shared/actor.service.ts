@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable }     from "@angular/core";
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable }     from 'rxjs/Observable';
 
 import {UtilityComponent} from '../../shared/components/utility.component';
 
@@ -12,6 +12,7 @@ export class ActorService{
 
   constructor(private http: Http){}
 
+  // Get the actor details by actor id
   getActorDetails (id: number): Observable<Actor> {
     let apiUrl = UtilityComponent.getUrl('person/'+id);
     return this.http.get(apiUrl)
@@ -19,6 +20,7 @@ export class ActorService{
                     .catch(this.handleError);
   }
 
+  // Get the actor's movies by actor id
   getActorMovies (id: number): Observable<Array<any>>{
     let apiUrl = UtilityComponent.getUrl('person/'+id+'/movie_credits');
     return this.http.get(apiUrl)
@@ -26,13 +28,17 @@ export class ActorService{
                     .catch(this.handleError);
   }
 
+  // Get the actors list
   getActors (name:string): Observable<Array<any>>{
     let apiUrl: string;
 
+    // if name is defined
     if(name) {
+       // Get actors by name
        apiUrl = UtilityComponent.getUrl('search/person','&query='+name);
     }else{
-       apiUrl = UtilityComponent.getUrl('person/popular');
+      // Get popular actors
+      apiUrl = UtilityComponent.getUrl('person/popular');
     }
 
     return this.http.get(apiUrl)
@@ -46,7 +52,7 @@ export class ActorService{
     return body.cast || { };
   }
 
-   // Extract response data
+  // Extract response data
   private extractData(res: Response) {
     let body = res.json();
     return body.results || { };

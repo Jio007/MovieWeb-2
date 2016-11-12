@@ -31,6 +31,7 @@ export class ActorDetailsComponent implements OnInit {
     });
   }
 
+  // Get the actor details
   getActorDetails(id: number){
     this.actorService.getActorDetails(id)
                       .subscribe(
@@ -41,6 +42,7 @@ export class ActorDetailsComponent implements OnInit {
                         });
   }
 
+  // Get the actor's movies
   getActorMovies(id: number){
     this.actorService.getActorMovies(id)
                       .subscribe(

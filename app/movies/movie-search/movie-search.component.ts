@@ -1,6 +1,6 @@
-import { Component, HostListener }   from '@angular/core';
+import { Component, Output, EventEmitter, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Observable }  from 'rxjs/Observable'
+import { Observable }  from 'rxjs/Observable';
 
 import { Movie }        from '../shared/movie.model';
 import { MovieService } from '../shared/movie.service';
@@ -13,22 +13,20 @@ import { MovieService } from '../shared/movie.service';
 export class MovieSearchComponent {
   movies: Movie[];
   name: string;
+  @Output() listMovies = new EventEmitter();
 
   // Constructor with injected service
   constructor(private movieService: MovieService){}
 
-  ngOnInit() {
-    // Load comments
-    this.getMoviesByName();
-  }
-
   searchMovie(event){
     this.getMoviesByName();
+    // Emit the listMovies fot the child components (MovieListComponent)
+    this.listMovies.emit(this.movies);
   }
 
   // Get movies by name
   getMoviesByName() {
-    this.movieService.getMoviesByName(this.name)
+    this.movieService.getMovies(this.name)
                       .subscribe(
                         movies => this.movies = movies, //Bind to view
                         err => {

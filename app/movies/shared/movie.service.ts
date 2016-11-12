@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import {UtilityComponent} from '../../shared/components/utility.component';
 
-import { Movie } from './movie.model';
+import { Movie }      from './movie.model';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -11,14 +11,6 @@ export class MovieService {
 
   // Constructor with injected http
   constructor (private http: Http) {}
-
-  // Get all movies
-  getMovies (): Observable<Movie[]> {
-    let moviesUrl = UtilityComponent.getUrl('discover/movie');
-    return this.http.get(moviesUrl)
-                  .map(this.extractData)
-                  .catch(this.handleError);
-  }
   
   // Get movie's details by id
   getMovieById (id: number): Observable<Movie> {
@@ -28,24 +20,27 @@ export class MovieService {
                   .catch(this.handleError);
   }
 
-  // Get the movie's videos by id
-  getMovieVideos (id: number): Observable<Array<any>> {
-    let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/videos');
+  // Get movie list by name
+  getMovies (name: string): Observable<Movie[]> {
+    let moviesUrl: string;
+
+    // If name is defined
+    if(name) {
+      // Get movies by name
+      moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name);
+    }else{
+      // Get popular movies
+      moviesUrl = UtilityComponent.getUrl('discover/movie');
+    }
+    
     return this.http.get(moviesUrl)
                   .map(this.extractData)
                   .catch(this.handleError);
   }
 
-  // Get movie list by name
-  getMoviesByName (name: string): Observable<Movie[]> {
-    let moviesUrl: string;
-
-    if(name) {
-       moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name);
-    }else{
-       moviesUrl = UtilityComponent.getUrl('discover/movie');
-    }
-    
+  // Get the movie's videos by id
+  getMovieVideos (id: number): Observable<Array<any>> {
+    let moviesUrl = UtilityComponent.getUrl('movie/'+id+'/videos');
     return this.http.get(moviesUrl)
                   .map(this.extractData)
                   .catch(this.handleError);

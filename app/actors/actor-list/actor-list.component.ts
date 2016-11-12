@@ -16,10 +16,11 @@ export class ActorListComponent implements OnInit {
   constructor(private actorService: ActorService){}
 
   ngOnInit(){
+    // Get the actors list
     this.getActorList();
   }
 
-
+  // Get the actors list
   getActorList(){
     this.actorService.getActors(this.name)
                       .subscribe(
@@ -30,9 +31,9 @@ export class ActorListComponent implements OnInit {
                         });
   }
 
-  searchActor(event){
-    this.getActorList();
+  // Search actors
+  searchActors(list){
+    this.actors = list;
   }
-
 
 }

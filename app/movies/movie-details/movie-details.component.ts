@@ -11,7 +11,7 @@ import { MovieService } from '../shared/movie.service';
   styleUrls: ['app/movies/movie-details/movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-  private sub:any;
+  private sub: any;
   movieInfo: Movie = new Movie();
   videos: any[];
   credits: any[];
@@ -58,7 +58,7 @@ export class MovieDetailsComponent implements OnInit {
                         });
   }
 
-   // Get movie details
+   // Get movie credits
   getMovieCredits(id: number){
     this.movieService.getMovieCredits(id)
                       .subscribe(

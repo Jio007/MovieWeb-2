@@ -4,6 +4,7 @@ import { FormsModule }  from '@angular/forms';
 
 import { ActorDetailsComponent } from './actor-details/actor-details.component'
 import { ActorListComponent }    from './actor-list/actor-list.component'
+import { ActorSearchComponent }  from './actor-search/actor-search.component'
 import { ActorsRoutingModule }   from './actors-routing.module'
 import { ActorService }          from './shared/actor.service';
 
@@ -15,7 +16,8 @@ import { ActorService }          from './shared/actor.service';
   ],
   declarations: [
     ActorDetailsComponent,
-    ActorListComponent
+    ActorListComponent,
+    ActorSearchComponent
   ],
   providers: [
     ActorService
