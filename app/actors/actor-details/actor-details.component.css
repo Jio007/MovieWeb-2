@@ -17,3 +17,52 @@ span, .subscribe:hover>div {
   color: #FFF;
   padding: 10px 10px 10px 10px;
 }
+
+/* Btns */
+
+.bottom-info {
+  display: block;
+  margin-top: 30px;
+}
+
+.btn,
+.btn-hover,
+.btn-active,
+.btn-focus {
+  border-radius: 0;
+}
+
+.btn.btn-min-w {
+  min-width: 105px;
+}
+
+.btn-web {
+  background-color: rgb(254, 0, 0);
+  color: #fff;
+}
+
+.btn-web:hover,
+.btn-web:focus,
+.btn-web:active {
+  color: #fff;
+}
+
+.btn-grey {
+  background: rgba(0, 0, 0, .4);
+  border: 1px solid rgba(255, 255, 255, .4);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  color: #FFF;
+}
+
+.btn-grey:hover,
+.btn-grey:focus,
+.btn-grey.focus {
+  background: rgba(51, 51, 51, .4);
+  color: #FFF;
+}
+
+.btn-s {
+  margin-right: 5px;
+}

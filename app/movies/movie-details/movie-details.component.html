@@ -8,24 +8,40 @@
     <div class="breaking-bad">
       <h1 class="title">{{movieInfo.title}}</h1>
       <ul class="meta">
-        <li class="year">{{movieInfo.release_date | date: 'yyyy'}}</li>
-        <li class="rating" *ngIf="movieInfo.vote_average">{{movieInfo.vote_average}} 
-          <span class="fa fa-star" aria-hidden="true"></span> 
+        <li class="year" *ngIf="movieInfo.release_date">{{movieInfo.release_date | date: 'yyyy'}}</li>
+        <li class="year" *ngIf="!movieInfo.release_date">Release Date Unknow</li>
+
+        <li class="rating" *ngIf="movieInfo.vote_average">
+          {{movieInfo.vote_average}}
+          <i class="fa fa-star" aria-hidden="true"></i>
         </li>
+        <li class="rating" *ngIf="!movieInfo.vote_average"> 
+          0 
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </li>
+
         <li class="duration" *ngIf="movieInfo.runtime">{{movieInfo.runtime}} min</li>
+        <li class="duration" *ngIf="!movieInfo.runtime">Duration Unknow</li>
+
         <li class="language" *ngFor="let language of movieInfo.spoken_languages">
           {{language.name}}
         </li>
       </ul>
-      <p class="description">{{movieInfo.overview}}
-      </p>
+      <p class="description" *ngIf="movieInfo.overview">{{movieInfo.overview}}</p>
+      <p class="description" *ngIf="!movieInfo.overview">Overview information not available</p>
       <hr class="break" />
+
       <div class="bottom-info" *ngFor="let video of videos; let i = index">
         <div *ngIf="i == 0">
-          <a class="btn btn-min-w btn-web btn-s" [routerLink]="['/movies']" role="button"> Back to Movie List </a>
           <a class="btn btn-min-w btn-grey" href="https://www.youtube.com/watch?v={{video.key}}" role="button" target="_blank"> Play Trailer</a>
         </div>
       </div>
+
+      <div class="bottom-info">
+        <a class="btn btn-min-w btn-web btn-s" [routerLink]="['/movies']" role="button"> Back to Movie List </a>
+        <a class="btn btn-min-w btn-web btn-s" [routerLink]="['/actors']" role="button"> Back to Actor List </a>
+      </div>
+
     </div>
   </main>
 </section>

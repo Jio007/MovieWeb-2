@@ -10,11 +10,17 @@
       <div class="medica-content">
         <p>{{actorInfo.birthday}}</p>
         <p>{{actorInfo.place_of_birth}}</p>
-        <p>{{actorInfo.biography}}</p>
+        <p *ngIf="actorInfo.biography">{{actorInfo.biography}}</p>
+        <p *ngIf="!actorInfo.biography">No information available</p>
+      </div>
+      <div class="button-info">
+        <a class="btn btn-min-w btn-grey" [routerLink]="['/movies']" role="button"> Back to Movie List </a>
+        <a class="btn btn-min-w btn-grey" [routerLink]="['/actors']" role="button"> Back to Actor List </a>
       </div>
     </div>
   </div>
 </div>
+<br />
 <!-- /Section: Actor's info -->
 
 <!-- Section: Movies -->
