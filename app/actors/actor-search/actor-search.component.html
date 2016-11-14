@@ -5,7 +5,7 @@
         <div class="section-heading">
           <h2>Popular Actors</h2>
           <div class="search-box">
-            <input placeholder="Search Actors" class="search" [(ngModel)]="name" (keypress)="searchActors(event)" />
+            <input placeholder="Search Actors" class="search" [(ngModel)]="name" (keyup)="searchActors(event)" />
           </div>
         </div>
       </div>

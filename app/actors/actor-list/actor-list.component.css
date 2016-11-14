@@ -1,3 +1,5 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
 span, .subscribe:hover>div {
     display: none;
 }
@@ -16,4 +18,26 @@ span, .subscribe:hover>div {
   height: 334px; 
   color: #FFF;
   padding: 10px 10px 10px 10px;
+}
+
+.pagination-btn{
+  margin-top: 20px;
+}
+
+.pagination-left{
+  float: left;
+}
+
+.pagination-right{
+  float: right;
+}
+
+.pagination-btn a{
+  color: #EB5D1E;
+  font-size: 25px;
+}
+
+.pagination-btn a:hover{
+  color: #28C3AB;
+  cursor: pointer;
 }

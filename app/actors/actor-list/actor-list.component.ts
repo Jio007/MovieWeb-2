@@ -11,18 +11,20 @@ import { ActorService } from "../shared/actor.service";
 })
 export class ActorListComponent implements OnInit {
   name: string;
+  page: number = 1;
   actors: any[];
+  actorName: string;
 
   constructor(private actorService: ActorService){}
 
   ngOnInit(){
     // Get the actors list
-    this.getActorList();
+    this.getActorList(this.name, this.page);
   }
 
   // Get the actors list
-  getActorList(){
-    this.actorService.getActors(this.name)
+  getActorList(name: string, page: number){
+    this.actorService.getActors(name, page)
                       .subscribe(
                         actors => this.actors = actors, //Bind to view
                         err => {
@@ -33,7 +35,23 @@ export class ActorListComponent implements OnInit {
 
   // Search actors
   searchActors(list){
-    this.actors = list;
+    this.page = 1;
+    this.actors = list.actors;
+    this.actorName = list.actorName;
+  }
+
+  paginate (step: string){
+    if(step == 'next') {
+      this.page++;
+    }else{
+      if(this.page > 1) {
+        this.page--;
+      }else{
+        this.page = 1;
+      }
+    }
+    this.getActorList(this.actorName, this.page);
+    setTimeout(() => window.scrollTo(0, 0), 1);
   }
 
 }

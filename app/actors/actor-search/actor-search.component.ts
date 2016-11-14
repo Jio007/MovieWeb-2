@@ -13,6 +13,7 @@ import { ActorService } from '../shared/actor.service';
 export class ActorSearchComponent {
   actors: any[];
   name: string;
+  page: number = 1;
   @Output() listActors = new EventEmitter();
 
   // Constructor
@@ -22,12 +23,12 @@ export class ActorSearchComponent {
   searchActors(){
     this.searchActorsByName();
     // Emit the listActors fot the child components (ActorListComponent)
-    this.listActors.emit(this.actors);
+    this.listActors.emit({actors: this.actors, actorName: this.name});
   }
 
   // Search actors by name
   searchActorsByName(){
-    this.actorService.getActors(this.name)
+    this.actorService.getActors(this.name, this.page)
                      .subscribe(
                        actors => this.actors = actors,
                        err => {

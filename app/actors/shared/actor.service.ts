@@ -29,16 +29,16 @@ export class ActorService{
   }
 
   // Get the actors list
-  getActors (name:string): Observable<Array<any>>{
+  getActors (name:string, page: number): Observable<Array<any>>{
     let apiUrl: string;
 
     // if name is defined
     if(name) {
        // Get actors by name
-       apiUrl = UtilityComponent.getUrl('search/person','&query='+name);
+       apiUrl = UtilityComponent.getUrl('search/person','&query='+name+'&page='+page);
     }else{
       // Get popular actors
-      apiUrl = UtilityComponent.getUrl('person/popular');
+      apiUrl = UtilityComponent.getUrl('person/popular', '&page='+page);
     }
 
     return this.http.get(apiUrl)
