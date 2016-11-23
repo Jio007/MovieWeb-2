@@ -27,5 +27,18 @@
         </div>
       </div>
     </div>
+    <!-- Pagination -->
+    <div class="pagination-btn">
+      <div class="pagination-left link" *ngIf="page > 1">
+        <a (click)="paginate('previous')">
+          <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i>
+        </a>  
+      </div>
+      <div class="pagination-right link">
+        <a (click)="paginate('next')">
+          <i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
   </div>
 </section>

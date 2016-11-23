@@ -13,6 +13,7 @@ import { MovieService } from '../shared/movie.service';
 export class MovieSearchComponent {
   movies: Movie[];
   name: string;
+  page: number = 1;
   @Output() listMovies = new EventEmitter();
 
   // Constructor with injected service
@@ -21,12 +22,12 @@ export class MovieSearchComponent {
   searchMovie(event){
     this.getMoviesByName();
     // Emit the listMovies fot the child components (MovieListComponent)
-    this.listMovies.emit(this.movies);
+    this.listMovies.emit({movies: this.movies, movieName: this.name});
   }
 
   // Get movies by name
   getMoviesByName() {
-    this.movieService.getMovies(this.name)
+    this.movieService.getMovies(this.name, this.page)
                       .subscribe(
                         movies => this.movies = movies, //Bind to view
                         err => {
@@ -35,17 +36,4 @@ export class MovieSearchComponent {
                         });
   }
 
-  // Pagination
-  /*@HostListener('window:scroll', ['$event'])
-    track(event) {
-      let windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-      let body = document.body, html = document.documentElement;
-      let docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-      let windowBottom = windowHeight + window.pageYOffset;
-      if (windowBottom >= docHeight) {
-        let nextPage = this.page++;
-        this.getMoviesByName(this.name, nextPage);
-        console.log(this.page);
-      }
-    }*/
 }

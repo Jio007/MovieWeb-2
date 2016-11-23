@@ -12,18 +12,20 @@ import { MovieService } from '../shared/movie.service';
 export class MovieListComponent implements OnInit{
   name: string;
   movies: Movie[];
+  page: number = 1;
+  movieName: string;
 
   // Constructor with the service injected
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
     // Get movies
-    this.getMovies();
+    this.getMovies(this.name, this.page);
   }
 
   // Get all movies
-  getMovies() {
-    this.movieService.getMovies(this.name)
+  getMovies(name: string, page: number) {
+    this.movieService.getMovies(name, page)
                       .subscribe(
                         movies => this.movies = movies, //Bind to view
                         err => {
@@ -34,6 +36,23 @@ export class MovieListComponent implements OnInit{
 
   // Search movies
   searchMovies(list){
-    this.movies = list;
+    this.page = 1;
+    this.movies = list.movies;
+    this.movieName = list.movieName;
+  }
+
+  // Pagination movie list
+  paginate (step: string){
+    if(step == 'next') {
+      this.page++;
+    }else{
+      if(this.page > 1) {
+        this.page--;
+      }else{
+        this.page = 1;
+      }
+    }
+    this.getMovies(this.movieName, this.page);
+    setTimeout(() => window.scrollTo(0, 0), 1);
   }
 }

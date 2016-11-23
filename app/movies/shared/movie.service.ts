@@ -21,16 +21,16 @@ export class MovieService {
   }
 
   // Get movie list by name
-  getMovies (name: string): Observable<Movie[]> {
+  getMovies (name: string, page: number): Observable<Movie[]> {
     let moviesUrl: string;
 
     // If name is defined
     if(name) {
       // Get movies by name
-      moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name);
+      moviesUrl = UtilityComponent.getUrl('search/movie','&query='+name+'&page='+page);
     }else{
       // Get popular movies
-      moviesUrl = UtilityComponent.getUrl('discover/movie');
+      moviesUrl = UtilityComponent.getUrl('discover/movie','&page='+page);
     }
     
     return this.http.get(moviesUrl)
